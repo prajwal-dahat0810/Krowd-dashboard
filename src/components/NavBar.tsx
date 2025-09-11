@@ -1,13 +1,13 @@
-import type { FC } from "react";
-import { useNavigate } from "react-router-dom";
+import type { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 const navItems = [
-  { name: "Home", url: "/", id: 0 },
+  { name: 'Home', url: '/', id: 0 },
   {
-    name: "About",
-    url: "/",
+    name: 'About',
+    url: '/',
     id: 1,
   },
-  { name: "Connect", url: "/", id: 2 },
+  { name: 'Connect', url: '/', id: 2 },
 ];
 export const NavBar: FC = () => {
   const navigate = useNavigate();
@@ -79,7 +79,7 @@ export const NavBar: FC = () => {
                   <div
                     onClick={() => navigate(nav.url)}
                     className={`block py-2 px-3 cursor-pointer text-white rounded-sm md:bg-transparent  ${
-                      nav.id !== 0 ? "md:text-[#242020]" : "md:text-[#da4e4e]"
+                      nav.id !== 0 ? 'md:text-[#242020]' : 'md:text-[#da4e4e]'
                     } md:p-0 md:dark:red-red-500 hover:text-[#da4e4e]`}
                     aria-current="page"
                   >

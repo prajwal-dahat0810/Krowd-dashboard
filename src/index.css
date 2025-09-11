@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 :global(.recharts-wrapper:focus),
 :global(.recharts-surface:focus) {
   outline: none !important;

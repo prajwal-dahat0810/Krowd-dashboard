@@ -1,13 +1,13 @@
-import { useMemo, useState } from "react";
-import { ChartComponent } from "../components/ChartComponent";
-import { NavBar } from "../components/NavBar";
-import salesData from "../../data.json";
-import { PieChartComponent } from "../components/PieChartComponent";
+import { useMemo, useState } from 'react';
+import { ChartComponent } from '../components/ChartComponent';
+import { NavBar } from '../components/NavBar';
+import salesData from '../../data.json';
+import { PieChartComponent } from '../components/PieChartComponent';
 import {
   ProductTableComponent,
   type Product,
-} from "../components/ProductTableComponent";
-import { CustomerTableComponent } from "../components/CustomerTableComponent";
+} from '../components/ProductTableComponent';
+import { CustomerTableComponent } from '../components/CustomerTableComponent';
 
 type SalesDataType = {
   date: string;
@@ -28,11 +28,12 @@ const fmtCurrency = (n: number) =>
   n.toLocaleString(undefined, { maximumFractionDigits: 0 });
 
 export default function Dashboard() {
-  const [selectedMonth, setSelectedMonth] = useState("2025-01");
+  const [selectedMonth, setSelectedMonth] = useState(
+    toMonthKey(salesData[0].date),
+  );
 
   const {
     totalRevenue,
-    totalTarget,
     targetAchPct,
     revenueGrowthPct,
     monthlySeries,
@@ -68,11 +69,11 @@ export default function Dashboard() {
 
       mv.products.set(
         row.product,
-        (mv.products.get(row.product) ?? 0) + row.revenue
+        (mv.products.get(row.product) ?? 0) + row.revenue,
       );
       mv.customers.set(
         row.client,
-        (mv.customers.get(row.client) ?? 0) + row.revenue
+        (mv.customers.get(row.client) ?? 0) + row.revenue,
       );
     }
 
@@ -160,7 +161,7 @@ export default function Dashboard() {
         <div className="grid grid-cols-2 gap-2   grid-rows-8 max-sm:grid-rows-8  ">
           <div className="col-span-2 min-h-20 row-start-1 col-start-1 max-sm:flex-col  flex justify-center  items-center gap-5">
             <div className=" flex gap-5 h-full  max-sm:text-sm max-sm:py-1.5  px-2  items-center justify-around rounded-xl bg-slate-50 w-full">
-              {" "}
+              {' '}
               <div className="w-full h-full  px-2 justify-center items-center flex flex-col bg-slate-50 rounded-xl">
                 <div>
                   <svg
@@ -212,7 +213,7 @@ export default function Dashboard() {
                       {targetAchPct.toFixed(1)}%
                     </div>
                     <div className="text-xs text-center">
-                      Target Achievement{" "}
+                      Target Achievement{' '}
                     </div>
                   </div>
                 </div>
@@ -241,7 +242,7 @@ export default function Dashboard() {
                 </div>
                 <div className="text-xl font-bold">
                   {revenueGrowthPct === null
-                    ? "—"
+                    ? '—'
                     : `${revenueGrowthPct.toFixed(1)}%`}
                 </div>
                 <div className="text-xs">Revenue Growth </div>
@@ -279,10 +280,10 @@ export default function Dashboard() {
                     className=" rounded-xl ring-0 outline-0 px-3 py-1"
                   >
                     {months.map((m, idx) => {
-                      const date = new Date(m + "-01");
-                      const formatted = date.toLocaleString("default", {
-                        month: "short",
-                        year: "numeric",
+                      const date = new Date(m + '-01');
+                      const formatted = date.toLocaleString('default', {
+                        month: 'short',
+                        year: 'numeric',
                       });
                       return (
                         <option
@@ -303,7 +304,7 @@ export default function Dashboard() {
           <div className="col-span-1 max-sm:col-span-2 max-sm:row-span-2  min-h-80 row-span-4 row-start-2 col-start-1">
             <ChartComponent monthlySeries={monthlySeries} />
           </div>
-          <div className="col-span-1 max-sm:col-span-2 max-sm:row-start-4 max-sm:row-span-2 row-span-4 row-start-2 col-start-2">
+          <div className="col-span-1 max-sm:col-span-2 max-sm:row-start-4 max-sm:row-span-3 row-span-4 row-start-2 col-start-2">
             <PieChartComponent productShare={productShare} />
           </div>
           <div className="col-span-1 max-sm:col-span-2 max-sm:row-span-1 row-start-6 col-start-1 row-span-2   ">

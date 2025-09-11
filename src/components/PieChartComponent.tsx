@@ -1,4 +1,4 @@
-import { useEffect, useState, type FC } from "react";
+import { useEffect, useState, type FC } from 'react';
 import {
   Cell,
   Legend,
@@ -7,8 +7,7 @@ import {
   type SectorProps,
   PieChart,
   ResponsiveContainer,
-  Tooltip,
-} from "recharts";
+} from 'recharts';
 type Coordinate = {
   x: number;
   y: number;
@@ -22,7 +21,7 @@ type PieSectorData = {
   value?: number;
   paddingAngle?: number;
   dataKey?: string;
-  payload?: any;
+  payload?: { name?: string; value?: number };
 };
 type PieSectorDataItem = React.SVGProps<SVGPathElement> &
   Partial<SectorProps> &
@@ -38,7 +37,6 @@ const renderActiveShape = ({
   fill,
   payload,
   percent,
-  value,
 }: PieSectorDataItem) => {
   console.log(payload);
   const RADIAN = Math.PI / 180;
@@ -50,12 +48,19 @@ const renderActiveShape = ({
   const my = (cy ?? 0) + ((outerRadius ?? 0) + 30) * sin;
   const ex = mx + (cos >= 0 ? 1 : -1) * 22;
   const ey = my;
-  const textAnchor = cos >= 0 ? "start" : "end";
+  const textAnchor = cos >= 0 ? 'start' : 'end';
 
   return (
     <g>
-      <text x={cx} y={cy} dy={8} textAnchor="middle" fill={fill}>
-        {payload.name}
+      <text
+        x={cx}
+        y={cy}
+        dy={8}
+        textAnchor="middle"
+        className=" text-sm text-wrap"
+        fill={fill}
+      >
+        {payload?.name ?? ''}
       </text>
       <Sector
         cx={cx}
@@ -88,7 +93,7 @@ const renderActiveShape = ({
         dy={2}
         textAnchor={textAnchor}
         fill="#999"
-        className="max-sm:text-[10px]"
+        className="max-sm:text-[10px] "
       >
         {`Rate ${((percent ?? 1) * 100).toFixed(2)}%`}
       </text>
@@ -97,12 +102,12 @@ const renderActiveShape = ({
 };
 
 const PIE_COLORS = [
-  "#3b82f6",
-  "#22c55e",
-  "#f97316",
-  "#a855f7",
-  "#ef4444",
-  "#06b6d4",
+  '#3b82f6',
+  '#22c55e',
+  '#f97316',
+  '#a855f7',
+  '#ef4444',
+  '#06b6d4',
 ];
 
 export type PieChartComponentProps = {
@@ -114,7 +119,6 @@ export type PieChartComponentProps = {
 export const PieChartComponent: FC<PieChartComponentProps> = ({
   productShare,
 }) => {
-  console.log(productShare);
   const [radius, setRadius] = useState({ inner: 60, outer: 80 });
   useEffect(() => {
     const handleResize = () => {
@@ -126,8 +130,8 @@ export const PieChartComponent: FC<PieChartComponentProps> = ({
     };
 
     handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
   return (
     <div className=" h-full bg-slate-50 rounded-2xl px-9 max-sm:px-2 pt-3 pb-10  ">

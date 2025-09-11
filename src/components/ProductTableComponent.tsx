@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import type { FC } from 'react';
 export type Product = {
   name: string;
   value: number;
