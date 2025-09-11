@@ -1,0 +1,11 @@
+@import "tailwindcss";
+:global(.recharts-wrapper:focus),
+:global(.recharts-surface:focus) {
+  outline: none !important;
+}
+.recharts-wrapper:focus {
+  outline: none !important;
+}
+.recharts-surface:focus {
+  outline: none !important;
+}

@@ -1,0 +1,110 @@
+[
+  {
+    "date": "2025-01-05",
+    "rep": "Aarav",
+    "client": "Zentech",
+    "product": "Alpha",
+    "units": 10,
+    "revenue": 12000,
+    "target": 10000
+  },
+  {
+    "date": "2025-01-12",
+    "rep": "Diya",
+    "client": "BlueWave",
+    "product": "Beta",
+    "units": 8,
+    "revenue": 9000,
+    "target": 8000
+  },
+  {
+    "date": "2025-01-23",
+    "rep": "Kabir",
+    "client": "NorthStar",
+    "product": "Gamma",
+    "units": 6,
+    "revenue": 7200,
+    "target": 7000
+  },
+  {
+    "date": "2025-02-04",
+    "rep": "Aarav",
+    "client": "Skyline",
+    "product": "Alpha",
+    "units": 12,
+    "revenue": 15000,
+    "target": 14000
+  },
+  {
+    "date": "2025-02-17",
+    "rep": "Diya",
+    "client": "Creston",
+    "product": "Beta",
+    "units": 9,
+    "revenue": 10800,
+    "target": 10000
+  },
+  {
+    "date": "2025-02-26",
+    "rep": "Kabir",
+    "client": "BlueWave",
+    "product": "Gamma",
+    "units": 7,
+    "revenue": 8800,
+    "target": 8500
+  },
+  {
+    "date": "2025-03-03",
+    "rep": "Aarav",
+    "client": "NorthStar",
+    "product": "Alpha",
+    "units": 11,
+    "revenue": 13800,
+    "target": 13000
+  },
+  {
+    "date": "2025-03-15",
+    "rep": "Diya",
+    "client": "Zentech",
+    "product": "Beta",
+    "units": 10,
+    "revenue": 12500,
+    "target": 12000
+  },
+  {
+    "date": "2025-03-28",
+    "rep": "Kabir",
+    "client": "Skyline",
+    "product": "Gamma",
+    "units": 8,
+    "revenue": 9600,
+    "target": 9500
+  },
+  {
+    "date": "2025-04-07",
+    "rep": "Aarav",
+    "client": "BlueWave",
+    "product": "Alpha",
+    "units": 13,
+    "revenue": 16500,
+    "target": 15000
+  },
+  {
+    "date": "2025-04-18",
+    "rep": "Diya",
+    "client": "NorthStar",
+    "product": "Beta",
+    "units": 9,
+    "revenue": 11900,
+    "target": 11000
+  },
+  {
+    "date": "2025-04-27",
+    "rep": "Kabir",
+    "client": "Creston",
+    "product": "Gamma",
+    "units": 10,
+    "revenue": 13000,
+    "target": 12000
+  }
+]
