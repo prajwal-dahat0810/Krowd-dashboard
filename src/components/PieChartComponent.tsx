@@ -143,7 +143,11 @@ export const PieChartComponent: FC<PieChartComponentProps> = ({
           Revenue
         </button>
       </div>
-      <ResponsiveContainer width="100%" height="100%" className="px-1 py-2">
+      <ResponsiveContainer
+        width="100%"
+        height="100%"
+        className="px-1 py-2 mt-3 max-sm:mt-0  overflow-x-scroll"
+      >
         <PieChart>
           <Pie
             activeShape={renderActiveShape}

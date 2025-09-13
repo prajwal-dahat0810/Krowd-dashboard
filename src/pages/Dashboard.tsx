@@ -42,7 +42,6 @@ export default function Dashboard() {
     topCustomers,
     months,
   } = useMemo(() => {
-    // Monthly aggregates
     const byMonth = new Map<
       string,
       {
@@ -55,6 +54,7 @@ export default function Dashboard() {
 
     for (const row of salesData as SalesDataType[]) {
       const m = toMonthKey(row.date);
+
       if (!byMonth.has(m)) {
         byMonth.set(m, {
           revenue: 0,
@@ -64,6 +64,7 @@ export default function Dashboard() {
         });
       }
       const mv = byMonth.get(m)!;
+
       mv.revenue += row.revenue;
       mv.target += row.target;
 
@@ -73,7 +74,7 @@ export default function Dashboard() {
       );
       mv.customers.set(
         row.client,
-        (mv.customers.get(row.client) ?? 0) + row.revenue,
+        (mv.products.get(row.client) ?? 0) + row.revenue,
       );
     }
 
@@ -84,8 +85,8 @@ export default function Dashboard() {
         target: vals.target,
       }))
       .sort((a, b) => (a.month < b.month ? -1 : 1));
+    console.log(monthlySeries);
 
-    // Calculate current month metrics
     const current = byMonth.get(selectedMonth);
 
     let totalRevenue = 0;
@@ -104,16 +105,14 @@ export default function Dashboard() {
       productShare = Array.from(current.products.entries())
         .map(([name, value]) => ({ name, value }))
         .sort((a, b) => b.value - a.value);
-
       topProducts = productShare.slice(0, 5);
-
       topCustomers = Array.from(current.customers.entries())
         .map(([name, value]) => ({ name, value }))
         .sort((a, b) => b.value - a.value)
         .slice(0, 5);
+      console.log(topCustomers);
     }
 
-    // Revenue Growth % compared to previous month
     const idx = monthlySeries.findIndex((m) => m.month === selectedMonth);
     if (idx > 0) {
       const last = monthlySeries[idx].revenue;
@@ -245,7 +244,7 @@ export default function Dashboard() {
                     ? '—'
                     : `${revenueGrowthPct.toFixed(1)}%`}
                 </div>
-                <div className="text-xs">Revenue Growth </div>
+                <div className="text-xs">KPI </div>
               </div>
               <div className="flex justify-center flex-col items-center  rounded-xl py-0.5">
                 <div className="p-1 rounded-full border border-[#2092f0] bg-[#2092f0]/10">
@@ -308,9 +307,15 @@ export default function Dashboard() {
             <PieChartComponent productShare={productShare} />
           </div>
           <div className="col-span-1 max-sm:col-span-2 max-sm:row-span-1 row-start-6 col-start-1 row-span-2   ">
+            <div className="flex font-sans w-full items-center py-2 max-sm:mt-3 justify-center mt-2    text-neutral-600 dark:text-neutral-200">
+              Top 5 Products
+            </div>
             <ProductTableComponent products={topProducts} />
           </div>
           <div className="col-span-1 max-sm:col-span-2 max-sm:row-start-7 max-sm:row-span-1 col-start-2 row-start-6 row-span-2    ">
+            <div className="flex font-sans w-full items-center py-2 max-sm:mt-3 justify-center mt-2    text-neutral-600 dark:text-neutral-200">
+              Top 5 Customers
+            </div>
             <CustomerTableComponent customers={topCustomers} />
           </div>
         </div>
